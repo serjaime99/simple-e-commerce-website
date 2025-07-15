@@ -1,12 +1,16 @@
 <?php
-// PDO Database Connection
+// PDO Database Connection for Railway
 
-// Require the configuration file that holds the credentials.
-// This file is not committed to Git.
-require_once __DIR__ . '/db_config.php';
+// Railway provides database credentials as environment variables.
+// This is a secure way to manage credentials without hardcoding them.
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$dbname = getenv('MYSQLDATABASE') ?: 'ecommerce_db';
+$username = getenv('MYSQLUSER') ?: 'root';
+$password = getenv('MYSQLPASSWORD') ?: '';
+$port = getenv('MYSQLPORT') ?: 3306;
 
-// Set DSN (Data Source Name) using variables from db_config.php
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+// Set DSN (Data Source Name)
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
 
 // Set PDO options
 $options = [
